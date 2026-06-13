@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { APP_STORE_URL, BASE_URL, PLAY_STORE_URL } from '../consts'
+
+const features = [
+  {
+    title: 'Spots',
+    text: 'Référencez les spots de votre ville et consultez leur affluence et leurs conditions (sol, sécurité, monde) signalées par la communauté.',
+  },
+  {
+    title: 'Sessions',
+    text: 'Lancez une session, retrouvez qui est sur place, et partagez photos et vidéos avec les riders présents.',
+  },
+  {
+    title: 'Tricks & vouch',
+    text: 'Claim un trick, fais-le valider ("vouch") par d’autres riders — la réputation se construit entre pairs, pas par un score algorithmique.',
+  },
+  {
+    title: 'Basée sur l’AT Protocol',
+    text: 'Le protocole ouvert qui alimente Bluesky. Vos spots, sessions et tricks vivent dans votre propre repo — pas dans une base centrale.',
+  },
+]
+---
+
+<Layout
+  title="SkateAT — l'app sociale des skateurs"
+  description="SkateAT est une application sociale gratuite pour skateurs, construite sur l'AT Protocol : spots, sessions, tricks et entraide entre riders."
+>
+  <section class="hero">
+    <img src={`${BASE_URL}/at-logo.png`} alt="SkateAT" width="96" height="96" class="logo" />
+    <h1>SkateAT 🛹</h1>
+    <p class="tagline">
+      L'app sociale des skateurs : référencez des spots, lancez et partagez des sessions, et validez
+      les tricks de vos potes entre riders.
+    </p>
+    <p class="tagline">
+      Construite sur l'<strong>AT Protocol</strong> (le protocole ouvert derrière Bluesky) —
+      gratuite, et ça restera comme ça.
+    </p>
+  </section>
+
+  <section class="features">
+    {
+      features.map((f) => (
+        <div class="feature">
+          <h2>{f.title}</h2>
+          <p>{f.text}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="stores">
+    <h2>Télécharger</h2>
+    <div class="store-links">
+      <a class="store-link" href={APP_STORE_URL}>App Store (iOS)</a>
+      <a class="store-link" href={PLAY_STORE_URL}>Google Play (Android)</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 32px 0 16px;
+  }
+
+  .logo {
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 0 0 16px;
+  }
+
+  .tagline {
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto 12px;
+  }
+
+  .features {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    margin: 40px 0;
+  }
+
+  @media (min-width: 600px) {
+    .features {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .feature {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .feature h2 {
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+  }
+
+  .feature p {
+    margin: 0;
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+  }
+
+  .stores {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .store-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .store-link {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: var(--brand);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { CONTACT_EMAIL, SITE_NAME } from '../consts'
+---
+
+<Layout
+  title="Politique de confidentialité"
+  description={`Politique de confidentialité de ${SITE_NAME} : quelles données sont traitées, pourquoi, et comment les contrôler.`}
+>
+  <h1>Politique de confidentialité</h1>
+  <p class="updated">Dernière mise à jour : 13 juin 2026</p>
+
+  <p>
+    Cette politique décrit les données traitées par l'application <strong>{SITE_NAME}</strong> et
+    la manière dont elles sont utilisées. {SITE_NAME} est construite sur l'<strong>AT Protocol</strong>
+    — le protocole ouvert qui alimente Bluesky : la plupart de vos contenus vivent dans votre
+    propre <em>repo</em> (PDS), pas dans une base de données centrale appartenant à {SITE_NAME}.
+  </p>
+
+  <h2>Identité et connexion</h2>
+  <p>
+    La connexion se fait avec votre identifiant Bluesky / AT Protocol (handle) et un{' '}
+    <em>app password</em> dédié et révocable — jamais votre mot de passe principal. Ce app
+    password, ainsi que votre session, sont stockés de façon chiffrée sur votre appareil. Votre
+    identifiant AT Protocol (DID) est utilisé pour associer votre activité dans l'app à votre
+    compte.
+  </p>
+
+  <h2>Le contenu que vous créez</h2>
+  <p>
+    Spots, sessions, tricks, validations ("vouch"), conditions de spot, photos et vidéos sont
+    enregistrés dans votre repo PDS (celui de Bluesky par défaut, ou tout autre PDS AT Protocol de
+    votre choix), au même titre que vos posts Bluesky. Ce contenu est donc{' '}
+    <strong>public par nature</strong>, comme le reste de votre activité AT Protocol. {SITE_NAME}{' '}
+    ne « possède » pas ces données : si vous les supprimez depuis l'app (ou tout autre client AT
+    Protocol), elles disparaissent de votre repo.
+  </p>
+
+  <h2>Localisation</h2>
+  <p>
+    Avec votre autorisation, l'app utilise la position de votre appareil pour centrer la carte et
+    afficher les spots à proximité. Cette position est traitée <strong>uniquement sur votre
+    appareil</strong> et n'est jamais envoyée à nos serveurs.
+  </p>
+
+  <h2>Index communautaire (backend)</h2>
+  <p>
+    Pour éviter d'interroger individuellement le repo de chaque personne que vous suivez à chaque
+    écran, {SITE_NAME} opère un petit service qui maintient un <strong>index</strong> — une copie
+    reconstructible — des spots, tricks, sessions et conditions publiés par vous et les comptes
+    que vous suivez, à partir du flux public ("firehose") AT Protocol. Cet index ne contient que
+    des données déjà publiques sur les PDS concernés : il peut être régénéré ou supprimé sans
+    perte pour vous.
+  </p>
+
+  <h2>Notifications push</h2>
+  <p>
+    Si vous autorisez les notifications, un identifiant de notification (token Expo / Firebase
+    Cloud Messaging) est associé à votre compte sur notre serveur, afin de vous envoyer des alertes
+    (nouveau spot d'une personne suivie, session démarrée, etc.) selon vos préférences — réglables
+    par type d'évènement et par personne suivie. Ce token n'est utilisé que pour l'envoi de
+    notifications par {SITE_NAME}.
+  </p>
+
+  <h2>Ce que nous ne faisons pas</h2>
+  <ul>
+    <li>Pas de publicité ni de tracking publicitaire</li>
+    <li>Pas de revente de données à des tiers</li>
+    <li>Pas de profilage à des fins commerciales</li>
+  </ul>
+
+  <h2>Services tiers impliqués</h2>
+  <ul>
+    <li>Votre PDS AT Protocol (Bluesky par défaut, ou un autre de votre choix) — régi par sa propre politique de confidentialité.</li>
+    <li>Expo Push / Firebase Cloud Messaging (Google) — pour l'acheminement des notifications push.</li>
+    <li>Fly.io — hébergement de l'index communautaire et du service de notifications.</li>
+  </ul>
+
+  <h2>Conservation et suppression</h2>
+  <p>
+    Les contenus skate (spots, sessions, tricks, médias…) restent sous votre contrôle : vous
+    pouvez les modifier ou les supprimer depuis l'app, ce qui les retire de votre repo PDS et, à la
+    synchronisation suivante, de l'index du backend. Pour demander la suppression de votre token de
+    notification ou de vos préférences stockées sur notre serveur, écrivez-nous à l'adresse
+    ci-dessous.
+  </p>
+
+  <h2>Vos droits</h2>
+  <p>
+    Selon votre juridiction (RGPD pour les résidents de l'Union européenne notamment), vous
+    disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour vos
+    contenus skate, ces droits s'exercent directement via votre PDS (votre compte Bluesky ou
+    équivalent). Pour les données détenues par le backend de {SITE_NAME} (token de notification,
+    préférences), contactez-nous.
+  </p>
+
+  <h2>Âge minimum</h2>
+  <p>
+    {SITE_NAME} n'est pas destinée aux enfants de moins de 13 ans, ni en deçà de l'âge minimum
+    requis par votre PDS (par exemple Bluesky) pour créer un compte.
+  </p>
+
+  <h2>Modifications</h2>
+  <p>
+    Cette politique peut évoluer ; la date de dernière mise à jour est indiquée en haut de cette
+    page.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Pour toute question concernant cette politique ou vos données : <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+  </p>
+</Layout>
+
+<style>
+  .updated {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-top: -8px;
+  }
+
+  h2 {
+    margin-top: 32px;
+  }
+</style>

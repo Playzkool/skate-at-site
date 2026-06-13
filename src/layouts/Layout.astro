@@ -1,0 +1,75 @@
+---
+import '../styles/global.css'
+import { BASE_URL, GITHUB_URL, SITE_NAME } from '../consts'
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={`${BASE_URL}/at-logo.png`} />
+    <meta name="description" content={description} />
+    <title>{title} · {SITE_NAME}</title>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href={`${BASE_URL}/`}>
+        <img src={`${BASE_URL}/at-logo.png`} alt="" width="32" height="32" />
+        <span>{SITE_NAME}</span>
+      </a>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="footer">
+      <a href={`${BASE_URL}/privacy/`}>Politique de confidentialité</a>
+      <span aria-hidden="true">·</span>
+      <a href={GITHUB_URL}>Code source</a>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 24px 0;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .brand img {
+    border-radius: 8px;
+  }
+
+  .footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .footer a {
+    color: var(--secondary-text);
+  }
+</style>
