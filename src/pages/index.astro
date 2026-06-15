@@ -25,6 +25,8 @@ const features = [
 <Layout
   title="SkateAT — l'app sociale des skateurs"
   description="SkateAT est une application sociale gratuite pour skateurs, construite sur l'AT Protocol : spots, sessions, tricks et entraide entre riders."
+  lang="fr"
+  path=""
 >
   <section class="hero">
     <img src={`${BASE_URL}/at-logo.png`} alt="SkateAT" width="96" height="96" class="logo" />
@@ -53,8 +55,12 @@ const features = [
   <section class="stores">
     <h2>Télécharger</h2>
     <div class="store-links">
-      <a class="store-link" href={APP_STORE_URL}>App Store (iOS)</a>
-      <a class="store-link" href={PLAY_STORE_URL}>Google Play (Android)</a>
+      <a class="store-badge" href={APP_STORE_URL}>
+        <img src={`${BASE_URL}/badges/app-store-fr.svg`} alt="Télécharger dans l'App Store" height="40" />
+      </a>
+      <a class="store-badge" href={PLAY_STORE_URL}>
+        <img src={`${BASE_URL}/badges/google-play-fr.png`} alt="Disponible sur Google Play" height="58" />
+      </a>
     </div>
   </section>
 </Layout>
@@ -126,14 +132,12 @@ const features = [
     margin-top: 12px;
   }
 
-  .store-link {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: var(--brand);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
+  .store-badge {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .store-badge img {
+    display: block;
   }
 </style>

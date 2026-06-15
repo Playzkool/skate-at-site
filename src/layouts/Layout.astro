@@ -5,34 +5,55 @@ import { BASE_URL, GITHUB_URL, SITE_NAME } from '../consts'
 interface Props {
   title: string
   description: string
+  lang: 'fr' | 'en'
+  /** Locale-independent route, e.g. '' for the home page or 'privacy/' — used to link to the page's translation. */
+  path: string
 }
 
-const { title, description } = Astro.props
+const { title, description, lang, path } = Astro.props
+
+const frPath = `${BASE_URL}/${path}`
+const enPath = `${BASE_URL}/en/${path}`
+const frUrl = new URL(frPath, Astro.site)
+const enUrl = new URL(enPath, Astro.site)
+
+const footerLabels = {
+  fr: { privacy: 'Politique de confidentialité', source: 'Code source' },
+  en: { privacy: 'Privacy Policy', source: 'Source code' },
+}[lang]
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href={`${BASE_URL}/at-logo.png`} />
     <meta name="description" content={description} />
+    <link rel="alternate" hreflang="fr" href={frUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={frUrl} />
     <title>{title} · {SITE_NAME}</title>
   </head>
   <body>
     <header class="header">
-      <a class="brand" href={`${BASE_URL}/`}>
+      <a class="brand" href={`${BASE_URL}/${lang === 'en' ? 'en/' : ''}`}>
         <img src={`${BASE_URL}/at-logo.png`} alt="" width="32" height="32" />
         <span>{SITE_NAME}</span>
       </a>
+      <nav class="lang-switcher" aria-label="Language">
+        <a href={frPath} aria-current={lang === 'fr' ? 'true' : undefined}>FR</a>
+        <span aria-hidden="true">·</span>
+        <a href={enPath} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </nav>
     </header>
     <main>
       <slot />
     </main>
     <footer class="footer">
-      <a href={`${BASE_URL}/privacy/`}>Politique de confidentialité</a>
+      <a href={`${BASE_URL}/${lang === 'en' ? 'en/' : ''}privacy/`}>{footerLabels.privacy}</a>
       <span aria-hidden="true">·</span>
-      <a href={GITHUB_URL}>Code source</a>
+      <a href={GITHUB_URL}>{footerLabels.source}</a>
     </footer>
   </body>
 </html>
@@ -42,6 +63,10 @@ const { title, description } = Astro.props
     max-width: 760px;
     margin: 0 auto;
     padding: 24px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .brand {
@@ -56,6 +81,23 @@ const { title, description } = Astro.props
 
   .brand img {
     border-radius: 8px;
+  }
+
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .lang-switcher a {
+    color: var(--secondary-text);
+    text-decoration: none;
+  }
+
+  .lang-switcher a[aria-current='true'] {
+    color: var(--text);
+    font-weight: 700;
   }
 
   .footer {
