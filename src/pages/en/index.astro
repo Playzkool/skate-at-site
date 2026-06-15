@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { APP_STORE_URL, BASE_URL, PLAY_STORE_URL } from '../../consts'
+
+const features = [
+  {
+    title: 'Spots',
+    text: 'Log the spots in your city and check the crowd levels and conditions (ground, security, crowding) reported by the community.',
+  },
+  {
+    title: 'Sessions',
+    text: 'Start a session, see who else is there, and share photos and videos with riders on site.',
+  },
+  {
+    title: 'Tricks & vouch',
+    text: 'Claim a trick and get it vouched for by other riders — reputation is built between peers, not by an algorithmic score.',
+  },
+  {
+    title: 'Built on the AT Protocol',
+    text: 'The open protocol that powers Bluesky. Your spots, sessions and tricks live in your own repo — not in a central database.',
+  },
+]
+---
+
+<Layout
+  title="SkateAT — the social app for skaters"
+  description="SkateAT is a free social app for skaters, built on the AT Protocol: spots, sessions, tricks and mutual support between riders."
+  lang="en"
+  path=""
+>
+  <section class="hero">
+    <img src={`${BASE_URL}/at-logo.png`} alt="SkateAT" width="96" height="96" class="logo" />
+    <h1>SkateAT 🛹</h1>
+    <p class="tagline">
+      The social app for skaters: log spots, start and share sessions, and vouch for your friends'
+      tricks with fellow riders.
+    </p>
+    <p class="tagline">
+      Built on the <strong>AT Protocol</strong> (the open protocol behind Bluesky) — free, and it'll
+      stay that way.
+    </p>
+  </section>
+
+  <section class="features">
+    {
+      features.map((f) => (
+        <div class="feature">
+          <h2>{f.title}</h2>
+          <p>{f.text}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="stores">
+    <h2>Download</h2>
+    <div class="store-links">
+      <a class="store-badge" href={APP_STORE_URL}>
+        <img src={`${BASE_URL}/badges/app-store-en.svg`} alt="Download on the App Store" height="40" />
+      </a>
+      <a class="store-badge" href={PLAY_STORE_URL}>
+        <img src={`${BASE_URL}/badges/google-play-en.png`} alt="Get it on Google Play" height="58" />
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 32px 0 16px;
+  }
+
+  .logo {
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 0 0 16px;
+  }
+
+  .tagline {
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto 12px;
+  }
+
+  .features {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    margin: 40px 0;
+  }
+
+  @media (min-width: 600px) {
+    .features {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .feature {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .feature h2 {
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+  }
+
+  .feature p {
+    margin: 0;
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+  }
+
+  .stores {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .store-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .store-badge {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .store-badge img {
+    display: block;
+  }
+</style>

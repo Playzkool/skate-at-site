@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { CONTACT_EMAIL, SITE_NAME } from '../../consts'
+---
+
+<Layout
+  title="Privacy Policy"
+  description={`${SITE_NAME} privacy policy: what data is processed, why, and how to control it.`}
+  lang="en"
+  path="privacy/"
+>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 13, 2026</p>
+
+  <p>
+    This policy describes the data processed by the <strong>{SITE_NAME}</strong> app and how it is
+    used. {SITE_NAME} is built on the <strong>AT Protocol</strong> — the open protocol that powers
+    Bluesky: most of your content lives in your own <em>repo</em> (PDS), not in a central database
+    owned by {SITE_NAME}.
+  </p>
+
+  <h2>Identity and sign-in</h2>
+  <p>
+    Sign-in uses your Bluesky / AT Protocol identifier (handle) and a dedicated, revocable{' '}
+    <em>app password</em> — never your main password. This app password, along with your session,
+    is stored encrypted on your device. Your AT Protocol identifier (DID) is used to link your
+    activity in the app to your account.
+  </p>
+
+  <h2>Content you create</h2>
+  <p>
+    Spots, sessions, tricks, vouches, spot conditions, photos and videos are stored in your PDS
+    repo (Bluesky's by default, or any other AT Protocol PDS of your choice), just like your
+    Bluesky posts. This content is therefore <strong>public by nature</strong>, like the rest of
+    your AT Protocol activity. {SITE_NAME} does not "own" this data: if you delete it from the app
+    (or any other AT Protocol client), it disappears from your repo.
+  </p>
+
+  <h2>Location</h2>
+  <p>
+    With your permission, the app uses your device's location to center the map and show nearby
+    spots. This location is processed <strong>only on your device</strong> and is never sent to
+    our servers.
+  </p>
+
+  <h2>Community index (backend)</h2>
+  <p>
+    To avoid querying the repo of every person you follow individually on every screen,{' '}
+    {SITE_NAME} runs a small service that maintains an <strong>index</strong> — a rebuildable copy
+    — of the spots, tricks, sessions and conditions published by you and the accounts you follow,
+    sourced from the public AT Protocol "firehose". This index only contains data that is already
+    public on the relevant PDSes: it can be rebuilt or deleted without any loss to you.
+  </p>
+
+  <h2>Push notifications</h2>
+  <p>
+    If you allow notifications, a notification identifier (Expo / Firebase Cloud Messaging token)
+    is linked to your account on our server, in order to send you alerts (new spot from someone
+    you follow, session started, etc.) according to your preferences — adjustable per event type
+    and per followed person. This token is only used by {SITE_NAME} to send notifications.
+  </p>
+
+  <h2>What we don't do</h2>
+  <ul>
+    <li>No advertising or ad tracking</li>
+    <li>No selling data to third parties</li>
+    <li>No profiling for commercial purposes</li>
+  </ul>
+
+  <h2>Third-party services involved</h2>
+  <ul>
+    <li>Your AT Protocol PDS (Bluesky by default, or another of your choice) — governed by its own privacy policy.</li>
+    <li>Expo Push / Firebase Cloud Messaging (Google) — for delivering push notifications.</li>
+    <li>Fly.io — hosting for the community index and notification service.</li>
+  </ul>
+
+  <h2>Retention and deletion</h2>
+  <p>
+    Your skate content (spots, sessions, tricks, media…) remains under your control: you can edit
+    or delete it from the app, which removes it from your PDS repo and, at the next sync, from the
+    backend index. To request deletion of your notification token or preferences stored on our
+    server, email us at the address below.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    Depending on your jurisdiction (notably the GDPR for EU residents), you have the right to
+    access, correct and delete your data. For your skate content, these rights are exercised
+    directly via your PDS (your Bluesky account or equivalent). For data held by {SITE_NAME}'s
+    backend (notification token, preferences), contact us.
+  </p>
+
+  <h2>Minimum age</h2>
+  <p>
+    {SITE_NAME} is not intended for children under 13, nor below the minimum age required by your
+    PDS (e.g. Bluesky) to create an account.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    This policy may change; the date of the last update is shown at the top of this page.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    For any questions about this policy or your data: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+  </p>
+</Layout>
+
+<style>
+  .updated {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-top: -8px;
+  }
+
+  h2 {
+    margin-top: 32px;
+  }
+</style>
