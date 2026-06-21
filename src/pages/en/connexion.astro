@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { SITE_NAME } from '../../consts'
+---
+
+<Layout
+  title="Sign-in guide"
+  description={`How to sign in to ${SITE_NAME}: handle, Bluesky App Password, and alternative PDS providers.`}
+  lang="en"
+  path="connexion/"
+>
+  <h1>Sign in to {SITE_NAME}</h1>
+
+  <h2>Your handle, not your email</h2>
+  <p>
+    {SITE_NAME} signs you in with your <strong>AT Protocol handle</strong> — not your email
+    address. Your handle looks like <code>yourname.bsky.social</code>, or your custom domain if
+    you've configured one (e.g. <code>yourname.com</code>).
+  </p>
+  <p class="tip">
+    📌 You can find your handle in your Bluesky profile → <strong>Settings → Handle</strong>.
+  </p>
+
+  <h2>Create an App Password on Bluesky</h2>
+  <p>
+    {SITE_NAME} requires an <strong>App Password</strong> — a dedicated secondary password for the
+    app, separate from your main Bluesky password. This lets you revoke {SITE_NAME}'s access at any
+    time without changing your main password.
+  </p>
+  <ol>
+    <li>Go to <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app/settings/app-passwords</a></li>
+    <li>Click <strong>Add App Password</strong></li>
+    <li>Give it a recognisable name (e.g. "SkateAT")</li>
+    <li>Copy the generated password</li>
+    <li>Paste it into the <strong>App password</strong> field on the {SITE_NAME} sign-in screen</li>
+  </ol>
+  <p class="warning">
+    ⚠️ The password is only shown once. Paste it directly into the app without storing it
+    elsewhere.
+  </p>
+
+  <h2>Alternative PDS providers</h2>
+  <p>
+    If your account is not hosted at Bluesky, enter your PDS URL in the <strong>PDS server</strong>
+    field on the sign-in screen (leave it as-is if you use Bluesky).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Provider</th>
+        <th>PDS server URL</th>
+        <th>Create an App Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Bluesky</strong> (default)</td>
+        <td><code>https://bsky.social</code></td>
+        <td><a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app → Settings → App Passwords</a></td>
+      </tr>
+      <tr>
+        <td><strong>Skyware / self-hosted PDS</strong></td>
+        <td>Your instance URL</td>
+        <td>Via your PDS web interface</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Any AT Protocol-compatible PDS works with {SITE_NAME}. To self-host your own PDS:
+    <a href="https://github.com/bluesky-social/pds" target="_blank" rel="noopener">github.com/bluesky-social/pds</a>.
+  </p>
+</Layout>
+
+<style>
+  h2 {
+    margin-top: 32px;
+  }
+
+  ol {
+    padding-left: 1.4em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tip {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--brand);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 12px 0;
+  }
+
+  .warning {
+    background: #fff8e1;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 12px 0;
+    color: #7c5700;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--bg-alt);
+    font-weight: 600;
+  }
+
+  code {
+    background: var(--bg-alt);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+</style>
