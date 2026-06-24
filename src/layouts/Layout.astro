@@ -18,8 +18,8 @@ const frUrl = new URL(frPath, Astro.site)
 const enUrl = new URL(enPath, Astro.site)
 
 const footerLabels = {
-  fr: { privacy: 'Politique de confidentialité', source: 'Code source' },
-  en: { privacy: 'Privacy Policy', source: 'Source code' },
+  fr: { privacy: 'Politique de confidentialité', support: 'Support', source: 'Code source' },
+  en: { privacy: 'Privacy Policy', support: 'Support', source: 'Source code' },
 }[lang]
 ---
 
@@ -52,6 +52,8 @@ const footerLabels = {
     </main>
     <footer class="footer">
       <a href={`${BASE_URL}/${lang === 'en' ? 'en/' : ''}privacy/`}>{footerLabels.privacy}</a>
+      <span aria-hidden="true">·</span>
+      <a href={`${BASE_URL}/${lang === 'en' ? 'en/' : ''}support/`}>{footerLabels.support}</a>
       <span aria-hidden="true">·</span>
       <a href={GITHUB_URL}>{footerLabels.source}</a>
     </footer>

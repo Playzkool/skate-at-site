@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { CONTACT_EMAIL, SITE_NAME } from '../consts'
+
+const faqs = [
+  {
+    q: 'Comment me connecter à SkateAT ?',
+    a: `${SITE_NAME} utilise ton compte Bluesky / AT Protocol. Sur l'écran de connexion, entre ton handle Bluesky (ex. tonnom.bsky.social) et un mot de passe d'application — pas ton mot de passe principal. Tu peux en générer un sur bsky.app → Paramètres → Mots de passe d'application.`,
+  },
+  {
+    q: "Je n'ai pas de compte Bluesky. Puis-je quand même utiliser SkateAT ?",
+    a: "Il te faut un compte AT Protocol gratuit pour utiliser l'app. Le plus simple est d'en créer un sur bsky.social — c'est gratuit et ça prend une minute. Tu peux aussi utiliser n'importe quel autre PDS AT Protocol compatible.",
+  },
+  {
+    q: 'Comment supprimer mon compte ou mes données ?',
+    a: `Tes spots, sessions, tricks et médias sont stockés dans ton propre repo AT Protocol (sur les serveurs de Bluesky ou ton propre PDS). Tu peux les supprimer directement depuis l'app ou depuis ton compte Bluesky. Pour demander la suppression des données détenues par le serveur de ${SITE_NAME} (token de notification push, préférences), envoie-nous un email à l'adresse ci-dessous.`,
+  },
+  {
+    q: "L'app demande ma localisation — pourquoi ?",
+    a: "La localisation sert uniquement à centrer la carte et afficher les spots à proximité. Elle est traitée entièrement sur ton appareil et n'est jamais envoyée à nos serveurs.",
+  },
+  {
+    q: 'Comment fonctionnent les pourboires ? Qu'est-ce que j'obtiens ?',
+    a: `Les pourboires sont des achats uniques et volontaires via l'achat intégré Apple. Ils ne débloquent aucune fonctionnalité — ${SITE_NAME} est et restera entièrement gratuit. Un petit badge « supporter » apparaît sur ton profil en guise de remerciement. Les pourboires financent directement l'hébergement et le développement.`,
+  },
+  {
+    q: "J'ai acheté un pourboire mais rien ne s'est passé.",
+    a: "Si ton achat a été débité mais que le badge supporter n'est pas apparu, envoie-nous un email avec ton handle et la date de l'achat, on arrange ça.",
+  },
+  {
+    q: "J'ai trouvé un bug ou l'app a planté.",
+    a: "Envoie-nous un email avec une courte description de ce qui s'est passé (écran où tu étais, ce que tu as tapé, ce que tu attendais vs. ce qui s'est produit). Les captures d'écran sont très utiles.",
+  },
+]
+---
+
+<Layout
+  title="Support"
+  description={`Obtiens de l'aide avec ${SITE_NAME} : questions fréquentes et coordonnées de contact.`}
+  lang="fr"
+  path="support/"
+>
+  <h1>Support</h1>
+  <p class="intro">
+    Un problème ? Une question ? Consulte la FAQ ci-dessous — si tu ne trouves pas ta réponse,
+    envoie-nous un email et on te répond.
+  </p>
+
+  <section class="faq">
+    {
+      faqs.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))
+    }
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>
+      Pas de réponse dans la FAQ ? Écris-nous à{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — on répond sous 48 h.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .intro {
+    color: var(--secondary-text);
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  details {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.975rem;
+    padding: 16px 18px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: '+';
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--secondary-text);
+    flex-shrink: 0;
+  }
+
+  details[open] summary::after {
+    content: '−';
+  }
+
+  details p {
+    margin: 0;
+    padding: 0 18px 16px;
+    color: var(--secondary-text);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .contact h2 {
+    margin-top: 0;
+  }
+</style>
