@@ -5,71 +5,57 @@ import { SITE_NAME } from '../consts'
 
 <Layout
   title="Guide de connexion"
-  description={`Comment se connecter à ${SITE_NAME} : handle, App Password Bluesky et hébergeurs PDS alternatifs.`}
+  description={`Comment se connecter à ${SITE_NAME} : connexion OAuth AT Protocol avec votre handle Bluesky, sans mot de passe.`}
   lang="fr"
   path="connexion/"
 >
   <h1>Se connecter à {SITE_NAME}</h1>
 
-  <h2>Votre handle, pas votre e-mail</h2>
+  <h2>Votre handle, c'est tout ce qu'il faut</h2>
   <p>
-    La connexion à {SITE_NAME} se fait avec votre <strong>handle AT Protocol</strong>, pas votre
-    adresse e-mail. Votre handle ressemble à <code>votrenom.bsky.social</code> — ou à votre
-    domaine personnalisé si vous en avez configuré un (ex. <code>votrenom.com</code>).
+    {SITE_NAME} utilise l'<strong>authentification OAuth AT Protocol</strong> : entrez simplement
+    votre <strong>handle</strong> (ex. <code>votrenom.bsky.social</code>) et appuyez sur
+    <em>Se connecter</em>. Le navigateur s'ouvre sur la page de connexion Bluesky, vous
+    autorisez l'accès, et vous revenez automatiquement dans l'app — sans jamais saisir
+    de mot de passe dans {SITE_NAME}.
   </p>
   <p class="tip">
-    📌 Vous pouvez retrouver votre handle dans votre profil Bluesky → <strong>Paramètres → Handle</strong>.
+    📌 Votre handle se trouve dans votre profil Bluesky → <strong>Paramètres → Handle</strong>.
+    Il ressemble à <code>votrenom.bsky.social</code> ou à votre domaine personnalisé.
   </p>
 
-  <h2>Créer un App Password sur Bluesky</h2>
+  <h2>Pas encore de compte ?</h2>
   <p>
-    {SITE_NAME} requiert un <strong>App Password</strong> — un mot de passe secondaire dédié à
-    l'app, distinct de votre mot de passe principal Bluesky. Cela vous permet de révoquer l'accès
-    à {SITE_NAME} à tout moment, sans modifier votre mot de passe principal.
-  </p>
-  <ol>
-    <li>Ouvrez <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app/settings/app-passwords</a></li>
-    <li>Cliquez sur <strong>Ajouter un App Password</strong></li>
-    <li>Donnez-lui un nom reconnaissable (ex. : « SkateAT »)</li>
-    <li>Copiez le mot de passe généré</li>
-    <li>Collez-le dans le champ <strong>App password</strong> de l'écran de connexion {SITE_NAME}</li>
-  </ol>
-  <p class="warning">
-    ⚠️ Ce mot de passe n'est affiché qu'une seule fois. Copiez-le directement dans l'app sans le
-    noter ailleurs.
+    Créez un compte gratuitement sur <a href="https://bsky.app" target="_blank" rel="noopener">bsky.app</a>,
+    puis revenez dans {SITE_NAME} pour vous connecter avec votre handle.
   </p>
 
-  <h2>Hébergeurs PDS alternatifs</h2>
+  <h2>PDS alternatifs</h2>
   <p>
-    Si votre compte n'est pas hébergé chez Bluesky, renseignez l'URL de votre PDS dans le champ
-    <strong>Serveur PDS</strong> de l'écran de connexion (laissez le champ par défaut si vous
-    utilisez Bluesky).
+    {SITE_NAME} fonctionne avec n'importe quel PDS compatible AT Protocol — pas seulement Bluesky.
+    Il suffit d'entrer votre handle : l'app résout automatiquement votre PDS depuis votre identité
+    AT Protocol, sans que vous ayez à renseigner quoi que ce soit de plus.
   </p>
-  <table>
-    <thead>
-      <tr>
-        <th>Hébergeur</th>
-        <th>URL du serveur PDS</th>
-        <th>Créer un App Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Bluesky</strong> (par défaut)</td>
-        <td><code>https://bsky.social</code></td>
-        <td><a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app → Paramètres → App Passwords</a></td>
-      </tr>
-      <tr>
-        <td><strong>Skyware / PDS auto-hébergé</strong></td>
-        <td>L'URL de votre instance</td>
-        <td>Via l'interface web de votre PDS</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <h2>Méthode avancée : App Password</h2>
   <p>
-    Tout PDS compatible AT Protocol fonctionne avec {SITE_NAME}. Pour héberger votre propre PDS :
-    <a href="https://github.com/bluesky-social/pds" target="_blank" rel="noopener">github.com/bluesky-social/pds</a>.
+    L'écran de connexion propose également une connexion par <strong>handle + App Password</strong>
+    pour les cas où OAuth n'est pas disponible (PDS non compatible, accès hors navigateur, etc.).
+    Cette méthode reste accessible mais n'est plus nécessaire pour la grande majorité des
+    utilisateurs Bluesky.
   </p>
+  <details>
+    <summary>Comment créer un App Password</summary>
+    <ol>
+      <li>Ouvrez <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app/settings/app-passwords</a></li>
+      <li>Cliquez sur <strong>Ajouter un App Password</strong></li>
+      <li>Donnez-lui un nom reconnaissable (ex. : « SkateAT »)</li>
+      <li>Copiez le mot de passe généré et collez-le dans le champ <strong>App password</strong> de l'écran de connexion</li>
+    </ol>
+    <p class="warning">
+      ⚠️ Ce mot de passe n'est affiché qu'une seule fois. Copiez-le directement dans l'app.
+    </p>
+  </details>
 </Layout>
 
 <style>
@@ -82,6 +68,20 @@ import { SITE_NAME } from '../consts'
     display: flex;
     flex-direction: column;
     gap: 6px;
+    margin: 12px 0;
+  }
+
+  details {
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--brand);
   }
 
   .tip {
@@ -99,24 +99,6 @@ import { SITE_NAME } from '../consts'
     border-radius: 0 6px 6px 0;
     margin: 12px 0;
     color: #7c5700;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 0.95rem;
-  }
-
-  th, td {
-    text-align: left;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-  }
-
-  th {
-    background: var(--bg-alt);
-    font-weight: 600;
   }
 
   code {

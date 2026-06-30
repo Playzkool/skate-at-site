@@ -5,70 +5,55 @@ import { SITE_NAME } from '../../consts'
 
 <Layout
   title="Sign-in guide"
-  description={`How to sign in to ${SITE_NAME}: handle, Bluesky App Password, and alternative PDS providers.`}
+  description={`How to sign in to ${SITE_NAME}: AT Protocol OAuth login with your Bluesky handle — no password needed.`}
   lang="en"
   path="connexion/"
 >
   <h1>Sign in to {SITE_NAME}</h1>
 
-  <h2>Your handle, not your email</h2>
+  <h2>Your handle is all you need</h2>
   <p>
-    {SITE_NAME} signs you in with your <strong>AT Protocol handle</strong> — not your email
-    address. Your handle looks like <code>yourname.bsky.social</code>, or your custom domain if
-    you've configured one (e.g. <code>yourname.com</code>).
+    {SITE_NAME} uses <strong>AT Protocol OAuth</strong>: just enter your <strong>handle</strong>
+    (e.g. <code>yourname.bsky.social</code>) and tap <em>Sign in</em>. Your browser opens on the
+    Bluesky sign-in page, you authorise access, and you're taken straight back into the app —
+    without ever typing a password into {SITE_NAME}.
   </p>
   <p class="tip">
     📌 You can find your handle in your Bluesky profile → <strong>Settings → Handle</strong>.
+    It looks like <code>yourname.bsky.social</code> or your custom domain.
   </p>
 
-  <h2>Create an App Password on Bluesky</h2>
+  <h2>No account yet?</h2>
   <p>
-    {SITE_NAME} requires an <strong>App Password</strong> — a dedicated secondary password for the
-    app, separate from your main Bluesky password. This lets you revoke {SITE_NAME}'s access at any
-    time without changing your main password.
-  </p>
-  <ol>
-    <li>Go to <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app/settings/app-passwords</a></li>
-    <li>Click <strong>Add App Password</strong></li>
-    <li>Give it a recognisable name (e.g. "SkateAT")</li>
-    <li>Copy the generated password</li>
-    <li>Paste it into the <strong>App password</strong> field on the {SITE_NAME} sign-in screen</li>
-  </ol>
-  <p class="warning">
-    ⚠️ The password is only shown once. Paste it directly into the app without storing it
-    elsewhere.
+    Create a free account at <a href="https://bsky.app" target="_blank" rel="noopener">bsky.app</a>,
+    then come back to {SITE_NAME} to sign in with your handle.
   </p>
 
   <h2>Alternative PDS providers</h2>
   <p>
-    If your account is not hosted at Bluesky, enter your PDS URL in the <strong>PDS server</strong>
-    field on the sign-in screen (leave it as-is if you use Bluesky).
+    {SITE_NAME} works with any AT Protocol-compatible PDS — not just Bluesky. Just enter your
+    handle: the app automatically resolves your PDS from your AT Protocol identity, no extra
+    configuration needed.
   </p>
-  <table>
-    <thead>
-      <tr>
-        <th>Provider</th>
-        <th>PDS server URL</th>
-        <th>Create an App Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Bluesky</strong> (default)</td>
-        <td><code>https://bsky.social</code></td>
-        <td><a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app → Settings → App Passwords</a></td>
-      </tr>
-      <tr>
-        <td><strong>Skyware / self-hosted PDS</strong></td>
-        <td>Your instance URL</td>
-        <td>Via your PDS web interface</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <h2>Advanced: App Password</h2>
   <p>
-    Any AT Protocol-compatible PDS works with {SITE_NAME}. To self-host your own PDS:
-    <a href="https://github.com/bluesky-social/pds" target="_blank" rel="noopener">github.com/bluesky-social/pds</a>.
+    The sign-in screen also offers a <strong>handle + App Password</strong> login for cases where
+    OAuth is unavailable (unsupported PDS, no browser access, etc.). This method remains available
+    but is no longer necessary for most Bluesky users.
   </p>
+  <details>
+    <summary>How to create an App Password</summary>
+    <ol>
+      <li>Go to <a href="https://bsky.app/settings/app-passwords" target="_blank" rel="noopener">bsky.app/settings/app-passwords</a></li>
+      <li>Click <strong>Add App Password</strong></li>
+      <li>Give it a recognisable name (e.g. "SkateAT")</li>
+      <li>Copy the generated password and paste it into the <strong>App password</strong> field on the sign-in screen</li>
+    </ol>
+    <p class="warning">
+      ⚠️ The password is only shown once. Paste it directly into the app.
+    </p>
+  </details>
 </Layout>
 
 <style>
@@ -81,6 +66,20 @@ import { SITE_NAME } from '../../consts'
     display: flex;
     flex-direction: column;
     gap: 6px;
+    margin: 12px 0;
+  }
+
+  details {
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--brand);
   }
 
   .tip {
@@ -98,24 +97,6 @@ import { SITE_NAME } from '../../consts'
     border-radius: 0 6px 6px 0;
     margin: 12px 0;
     color: #7c5700;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 0.95rem;
-  }
-
-  th, td {
-    text-align: left;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-  }
-
-  th {
-    background: var(--bg-alt);
-    font-weight: 600;
   }
 
   code {
